@@ -17,3 +17,11 @@ A complexidade da busca é semelhante à busca binária tradicional, mas cada $\
 
 
 ## Como o código funciona (exemplo em Python)
+
+O código se assemelha bastante ao código da busca binária simples, inclusive a forma que é a busca binária é implementada é igual. Portanto, será omitida. A diferença está no uso da API da biblioteca _threading_ do Python.
+
+Cada thread é iniciada com o construtor __Thread__ e tem como _target_ uma função que será executada (nesse caso, busca binária) e em _args_ os argumentos para a função que será executada dentro daquela thread. Perceba, por tanto, que cada lista (masculina e feminina) será atribuída para threads diferentes, ou seja, serão buscadas ao mesmo em processadores diferentes. 
+
+![](2022-09-07-14-56-09.png)
+
+Por fim, é necessário, conforme dito acima, usar uma __thread.join__ (ou seja, a thread finalizar) pois, por exemplo, poderia ser printado os valores sem que a thread2 tivesse finalizado e isso indicaria um retorno errôneo  
