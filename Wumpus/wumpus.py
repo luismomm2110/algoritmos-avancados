@@ -1,15 +1,14 @@
+from solver import Solver
 from world import World
+from GUI import GUI
 
 
 def main():
     world = World(3)
-    table = world.table
-    print(table.nodes)
-    print(table.edges)
-    print(world.wumpus_position)
-    print(world.stinks)
-    print(world.holes_positions)
-    print(world.gold_position)
+    solver = Solver(world)
+    for path in solver.find_paths():
+        g = GUI(world, path)
+        g.draw_grid()
 
 
 if __name__ == "__main__":
