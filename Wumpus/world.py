@@ -50,6 +50,7 @@ class World:
         free_spaces = deepcopy(self.table.nodes)
 
         free_spaces.remove(self.wumpus_position)
+        free_spaces.remove(0)
 
         holes = []
 
