@@ -19,6 +19,7 @@ class GUI:
         self.solution = solution
         self.killed_by_hole = False
         self.killed_by_wumpus = False
+        self.score = 0
         self.grid = dict()
 
     def draw_grid(self):
@@ -28,8 +29,10 @@ class GUI:
             self._draw_step()
             if self.killed_by_wumpus or self.killed_by_wumpus:
                 self._check_for_game_over()
-                sleep(2)
                 break
+            self.score += -1
+        print("FIM DE JOGO", end='')
+        print(f'SCORE: {self.score} ')
 
     def _draw_step(self):
         sleep(1)
@@ -54,6 +57,7 @@ class GUI:
             self.killed_by_wumpus = True
         elif flatten_position == self.world.gold_position:
             self.grid[position] = GOLD
+            self.score += 1000
         elif flatten_position in self.world.stinks:
             self.grid[position] = STINK
         elif flatten_position in self.world.holes_positions:
@@ -65,9 +69,11 @@ class GUI:
             self.grid[position] = VISITED
 
     def _check_for_game_over(self):
+        self.score -= 1000
         sleep(0.5)
         system('clear')
         if self.killed_by_hole:
             print("VOCE CAIU NO BURACO ")
         elif self.killed_by_wumpus:
             print("O WUMPUS TE PEGOU")
+        sleep(2)
